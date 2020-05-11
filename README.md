@@ -38,8 +38,8 @@ let
 
   rust-esp = pkgs.callPackage (builtins.fetchTarball {
     name = "rust-esp-nix";
-    url = "https://github.com/sdobz/rust-esp-nix/archive/e8ab14d39a77018fe5f85c90a7c26f3727b76fb3.tar.gz";
-    sha256 = "1hs5ay9wp6vrj7aksr0m38ijk7skh9gnryifspgdf52v7rzwdgp1";
+    url = "https://github.com/sdobz/rust-esp-nix/archive/791e35c4822a7bdb91a2fbf7323e64255b640bd0.tar.gz";
+    sha256 = "0qp3myqpnprf7wfxxvnxpkhs3rg1d85cd9zynrhva7clgs3axnn4";
   }) {};
 in 
 pkgs.mkShell {
