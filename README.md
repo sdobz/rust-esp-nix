@@ -41,7 +41,7 @@ let
     url = "https://github.com/sdobz/rust-esp-nix/archive/791e35c4822a7bdb91a2fbf7323e64255b640bd0.tar.gz";
     sha256 = "0qp3myqpnprf7wfxxvnxpkhs3rg1d85cd9zynrhva7clgs3axnn4";
   }) {};
-in 
+in
 pkgs.mkShell {
     buildInputs = [ 
       rust-esp.xbuild
@@ -54,17 +54,17 @@ pkgs.mkShell {
     ];
 
     shellHook = ''
-set -e
-
 ${rust-esp.env}
 
 if ! [ -d esp-idf ]; then
   mkdir -p esp-idf
-  cd esp-idf
+  pushd esp-idf
   git init
   git remote add origin https://github.com/espressif/esp-idf
   git fetch --depth 1 origin 0a03a55c1eb44a354c9ad5d91d91da371fe23f84
   git checkout FETCH_HEAD
+  git submodule update --init --recursive
+  popd
 fi
 IDF_PATH=$(pwd)/esp-idf
     '';
@@ -74,7 +74,13 @@ IDF_PATH=$(pwd)/esp-idf
 Example usage:
 
 ```bash
-$ git clone 
+$ git clone https://github.com/sdobz/esp32-hello
+$ cd esp32-hello
+$ nix-shell shell.nix
+<wait for a long long time while we build the world>
+[shell] $ ./all.sh /dev/ttyUSB0
+...
+ (2317) Rust: I, live, again!.
 ```
 
 # Improvements:
