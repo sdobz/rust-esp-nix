@@ -36,7 +36,11 @@ let
     ];
   };
 
-  rust-esp = pkgs.callPackage ./rust-esp-nix {};
+  rust-esp = pkgs.callPackage (builtins.fetchTarball {
+    name = "rust-esp-nix";
+    url = "https://github.com/sdobz/rust-esp-nix/archive/e8ab14d39a77018fe5f85c90a7c26f3727b76fb3.tar.gz";
+    sha256 = "1hs5ay9wp6vrj7aksr0m38ijk7skh9gnryifspgdf52v7rzwdgp1";
+  }) {};
 in 
 pkgs.mkShell {
     buildInputs = [ 
@@ -44,6 +48,8 @@ pkgs.mkShell {
       rust-esp.bindgen
       rust-esp.rustc
       rust-esp.cargo
+      rust-esp.esp-idf
+      rust-esp.esp32-toolchain
       pkgs.rustfmt
     ];
 
@@ -60,6 +66,7 @@ if ! [ -d esp-idf ]; then
   git fetch --depth 1 origin 0a03a55c1eb44a354c9ad5d91d91da371fe23f84
   git checkout FETCH_HEAD
 fi
+IDF_PATH=$(pwd)/esp-idf
     '';
 }
 ```
