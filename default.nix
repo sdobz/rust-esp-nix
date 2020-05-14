@@ -13,6 +13,9 @@ in rec {
   bindgen = pkgs.callPackage ./bindgen.nix {
     inherit rustPlatform;
   };
+  rust-analyzer = (pkgs.callPackage ./rust-analyzer.nix {
+    inherit rustPlatform;
+  }).rust-analyzer;
   env = ''
     export XARGO_RUST_SRC="${rust-src}/src"
     export LLVM_XTENSA="${llvm-xtensa}"
