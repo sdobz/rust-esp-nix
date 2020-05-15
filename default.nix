@@ -26,7 +26,7 @@ in rec {
 
     export CFLAGS_COMPILE="-Wno-error=incompatible-pointer-types -Wno-error=implicit-function-declaration"
     export OPENOCD_SCRIPTS=$IDF_TOOLS_PATH/tools/openocd-esp32/share/openocd/scripts
-    # export NIX_CFLAGS_LINK=-lncurses
+    export NIX_CFLAGS_LINK=-lncurses
     export PATH=$PATH:${esp-idf}/tools:${esp-idf}/components/esptool_py/esptool:$IDF_TOOLS_PATH/tools/esp32ulp-elf/bin:$IDF_TOOLS_PATH/tools/openocd-esp32/bin:$IDF_TOOLS_PATH/tools/xtensa-esp32-elf/bin
   '';
 }
